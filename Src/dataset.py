@@ -15,22 +15,18 @@ class BERTData:
     
     def __getitem__(self, item):
         
-        feedback = " ".join(str(self.feedback).split())
+        feedback = " ".join(str(self.feedback[item]).split())
         inp = self.tokenizer.encode_plus(
             feedback,
             None,
             add_special_tokens=True,
-            max_length=self.max_len
+            max_length=self.max_len,
+            pad_to_max_length=True
         )
        
         ids = inp["input_ids"]
         mask = inp["attention_mask"]
         token_type_ids = inp["token_type_ids"]
-        padding = self.max_len - len(ids)
-        
-        ids = ids + [0]*padding
-        mask = mask + [0]*padding
-        token_type_ids = token_type_ids + [0]*padding
         
         return {
             "ids": torch.tensor(ids, dtype=torch.long),
