@@ -18,7 +18,7 @@ def start():
         lambda x : 1 if x == "positive" else 0
     )
     
-    df_train, df_valid = tts(
+    df_train, df_test = tts(
         df,
         test_size = 0.2,
         random_state = 42,
@@ -26,7 +26,7 @@ def start():
     )
     
     df_train.reset_index(inplace = True, drop = True)
-    df_valid.reset_index(inplace = True, drop = True)
+    df_test.reset_index(inplace = True, drop = True)
     
     train_dataset = dataset.BERTData(
         feedback = df_train["review"].values,
