@@ -63,7 +63,7 @@ def start():
     ]
     
     train_steps = int(len(df_train)/ config.BATCH_SIZE_TRAIN * config.EPOCHS)
-    optimzer = AdamW(
+    optimizer = AdamW(
         optimized_params,
         lr = 3e-5
     )
