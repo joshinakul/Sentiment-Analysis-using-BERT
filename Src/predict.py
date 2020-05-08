@@ -49,7 +49,7 @@ def sentiment():
     
     feedback = request.json["feed"]
     start_time = time.time()
-    positive_prediction = feedback_prediction(feedback)
+    positive_prediction = predict(feedback)
     negative_prediction = 1 - positive_prediction
     response = {}
     response["response"] = {
