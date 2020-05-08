@@ -17,7 +17,7 @@ def predict(sentance):
         feedback,
         None,
         add_special_tokens=True,
-        max_length=self.max_len,
+        max_length=max_len,
         pad_to_max_length=True
     )
        
@@ -26,9 +26,9 @@ def predict(sentance):
     token_type_ids = inp["token_type_ids"]
         
         
-    ids =  torch.tensor(ids, dtype=torch.long).unsqueeze(0),
-    mask = torch.tensor(mask, dtype=torch.long).unsqueeze(0),
-    token_type_ids = torch.tensor(token_type_ids, dtype=torch.long).unsqueeze(0),
+    ids =  torch.tensor(ids, dtype=torch.long).unsqueeze(0)
+    mask = torch.tensor(mask, dtype=torch.long).unsqueeze(0)
+    token_type_ids = torch.tensor(token_type_ids, dtype=torch.long).unsqueeze(0)
     
     ids = ids.to(device, dtype=torch.long)
     token_type_ids = token_type_ids.to(device, dtype=torch.long)
@@ -57,7 +57,7 @@ def sentiment():
         'feedback': str(feedback),
         'time_taken': str(time.time() - start_time)
     }
-    return flask.jsonify(response)
+    return jsonify(response)
     
     
 if __name__=="__main__":
