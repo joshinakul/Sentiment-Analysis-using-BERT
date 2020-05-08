@@ -47,7 +47,7 @@ def predict(sentance):
 @app.route("/",methods = ["POST"])
 def sentiment():
     
-    feedback = request.get_json["feed"]
+    feedback = request.json["feed"]
     start_time = time.time()
     positive_prediction = feedback_prediction(feedback)
     negative_prediction = 1 - positive_prediction
