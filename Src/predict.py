@@ -13,7 +13,7 @@ def predict(sentance):
     tokenizer = config.TOKENIZER
     max_len = config.MAX_LEN
     feedback = " ".join(str(sentance).split())
-    inp = self.tokenizer.encode_plus(
+    inp = tokenizer.encode_plus(
         feedback,
         None,
         add_special_tokens=True,
@@ -29,7 +29,6 @@ def predict(sentance):
     ids =  torch.tensor(ids, dtype=torch.long).unsqueeze(0),
     mask = torch.tensor(mask, dtype=torch.long).unsqueeze(0),
     token_type_ids = torch.tensor(token_type_ids, dtype=torch.long).unsqueeze(0),
-    sentiment = torch.tensor(self.sentiment[item], dtype=torch.float).unsqueeze(0)
     
     ids = ids.to(device, dtype=torch.long)
     token_type_ids = token_type_ids.to(device, dtype=torch.long)
